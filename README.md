@@ -34,7 +34,7 @@ with:
   WEBHOOK_SECRET: {{ }}
 ```
 
-## Build
+## Build and Release Notes
 
 ```bash
 # Compile the index.js
