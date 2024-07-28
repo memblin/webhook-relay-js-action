@@ -27,4 +27,7 @@ with:
 
 ```bash
 ncc build index.js
+git add .
+git commit -m 'commit_message' v1.0.1
+
 ```

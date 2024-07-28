@@ -1,5 +1,4 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
 const crypto = require('crypto');
 const axios = require('axios');
 const fs = require('fs');
@@ -9,10 +8,6 @@ const { v4: uuidv4 } = require('uuid');
 const GITHUB_EVENT_PATH = process.env.GITHUB_EVENT_PATH || null;
 const GITHUB_EVENT_NAME = process.env.GITHUB_EVENT_NAME || null;
 const RUNNER_NAME = process.env.RUNNER_NAME || null;
-
-// Provided by vars and secrets Context Variables
-const WEBHOOK_ENDPOINT = process.env.WEBHOOK_ENDPOINT || null;
-const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET || null;
 
 function getSignatures(payload, secret) {
   // Generate X-Hub-Signature
@@ -31,7 +26,11 @@ async function main() {
     const payload = fs.readFileSync(GITHUB_EVENT_PATH, 'utf8');
     const payloadString = JSON.stringify(JSON.parse(payload), null, '');
 
-    const { sha1Signature, sha256Signature } = getSignatures(payloadString, WEBHOOK_SECRET);
+    // Provided by vars and secrets Context Variables
+    const webhookEndpoint = core.getInput('WEBHOOK_ENDPOINT');
+    const webhookSecret = core.getInput('WEBHOOK_SECRET');
+
+    const { sha1Signature, sha256Signature } = getSignatures(payloadString, webhookSecret);
 
     // Set the headers
     const headers = {
@@ -47,7 +46,7 @@ async function main() {
     };
 
     // Make the POST request
-    const response = await axios.post(WEBHOOK_ENDPOINT, payloadString, { headers });
+    const response = await axios.post(webhookEndpoint, payloadString, { headers });
 
     // Print the response
     console.log(response.status);
