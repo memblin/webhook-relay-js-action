@@ -22,3 +22,9 @@ with:
   WEBHOOK_PAYLOAD: {{ }}
   WEBHOOK_SECRET: {{ }}
 ```
+
+## Build before rease
+
+```bash
+ncc build index.js
+```
