@@ -11,6 +11,10 @@
   "license": "",
   "dependencies": {
     "@actions/core": "^1.10.1",
-    "@actions/github": "^6.0.0"
+    "@actions/github": "^6.0.0",
+    "axios": "^1.7.2",
+    "crypto": "^1.0.1",
+    "fs": "^0.0.1-security",
+    "uuid": "^10.0.0"
   }
 }

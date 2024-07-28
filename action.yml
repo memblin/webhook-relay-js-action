@@ -5,7 +5,6 @@ inputs:
   WEBHOOK_ENDPOINT:
     description: 'Atlantis Webhook Endpoint URL'
     required: true
-    default: 'http://atlantis:4141/events'
   WEBHOOK_SECRET:
     description: 'Webhook Secret used to verify payloads'
     required: true
