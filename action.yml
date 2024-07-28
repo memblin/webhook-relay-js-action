@@ -1,13 +1,19 @@
 ---
-name: atlantis-webhook-relay
-description: Relay the webhook event data to an Atlantis /events endpoint
+name: webhook-relay-js-action
+description: Relay the webhook event data to the configured endpoint
 inputs:
   WEBHOOK_ENDPOINT:
-    description: 'Atlantis Webhook Endpoint URL'
+    description: Webhook Endpoint URL
     required: true
   WEBHOOK_SECRET:
-    description: 'Webhook Secret used to verify payloads'
+    description: Webhook Secret used to verify payload
     required: true
+outputs:
+  responseStatus:
+    description: HTTP Status code from the Webhook request response
+  responseData:
+    description: The body of the response from the Webhook request response
+  
 runs:
   using: 'node20'
   main: 'dist/index.js'

@@ -52,6 +52,10 @@ async function main() {
     console.log(response.status);
     console.log(response.data);
 
+    // Pupulate the outputs
+    core.setOutput("responseStatus", response.status);
+    core.setOutput("responseData", response.data)
+
   } catch (error) {
     core.setFailed(error.message);
   }
