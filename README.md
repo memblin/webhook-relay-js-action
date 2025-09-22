@@ -68,7 +68,7 @@ jobs:
 
 ```bash
 # Compile the index.js
-ncc build index.js
+npx @vercel/ncc build index.js
 
 # Add changes, commit, tag, push
 git add .
